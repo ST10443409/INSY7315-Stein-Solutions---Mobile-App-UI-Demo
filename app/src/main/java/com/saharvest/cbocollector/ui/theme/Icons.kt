@@ -30,6 +30,8 @@ object GlyphPaths {
     const val NavCollect = "M3 7.5 12 3l9 4.5v9L12 21l-9-4.5zM3 7.5 12 12l9-4.5M12 12v9"
     const val NavHistory = "M12 7v5l4 2M20.5 12a8.5 8.5 0 1 1-8.5-8.5"
     const val NavSync = "M20.5 12a8.5 8.5 0 1 1-2.6-6.1M20 3.5v5h-5"
+    const val NavClipboard = "M8 4h8a2 2 0 0 1 2 2v14H6V6a2 2 0 0 1 2-2zM9.5 11.5l1.8 1.8 3.7-3.8"
+    const val NavCamera = "M4 8h3l1.5-2h7L17 8h3v11H4zM12 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"
 }
 
 /** Draws one or more SVG-style stroke paths, scaled uniformly from a 24x24 viewBox. */

@@ -211,4 +211,73 @@ class AppState : ViewModel() {
         screen = target
         addOpen = false
     }
+
+    // --- Vetting Officer flow ---
+    // Kept as a separate values/index/shots trio (not shared with the CBO collector's
+    // vetting form above) so the two roles never cross-contaminate a draft mid-session.
+    val officerValues = mutableStateMapOf<String, Any>()
+    var officerOpenSectionIndex by mutableStateOf(0)
+    val officerShots = mutableStateListOf(false, false, false, false)
+    var officerFormRef by mutableStateOf("VET-2026-0842 · draft on this device")
+
+    fun officerValueOf(key: String): Any? = officerValues[key]
+
+    fun officerSetValue(key: String, value: Any) {
+        officerValues[key] = value
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun officerToggleChip(key: String, option: String) {
+        val current = officerValues[key] as? List<String> ?: emptyList()
+        officerValues[key] = if (option in current) current - option else current + option
+    }
+
+    fun officerIsFilled(field: VettingField): Boolean {
+        val v = officerValues[field.key]
+        return when (v) {
+            null -> false
+            is List<*> -> v.isNotEmpty()
+            else -> v.toString().isNotBlank()
+        }
+    }
+
+    fun officerRequiredDone(): Int = VETTING_SECTIONS.sumOf { s -> s.fields.count { it.required && officerIsFilled(it) } }
+    fun officerProgressPct(): Int {
+        val total = requiredTotal()
+        return if (total == 0) 0 else (officerRequiredDone() * 100) / total
+    }
+
+    fun officerSectionRequiredDone(section: VettingSection): Int = section.fields.count { it.required && officerIsFilled(it) }
+    fun officerIsSectionComplete(section: VettingSection): Boolean {
+        val total = sectionRequiredTotal(section)
+        return total > 0 && officerSectionRequiredDone(section) == total
+    }
+
+    fun officerToggleSection(index: Int) {
+        officerOpenSectionIndex = if (officerOpenSectionIndex == index) -1 else index
+    }
+
+    fun officerJumpToSection(index: Int) {
+        officerOpenSectionIndex = index
+        screen = Screen.VoForm
+    }
+
+    fun startNewVettingForm() {
+        officerValues.clear()
+        officerOpenSectionIndex = 0
+        for (i in officerShots.indices) officerShots[i] = false
+        screen = Screen.VoForm
+    }
+
+    fun officerToggleShot(index: Int) {
+        officerShots[index] = !officerShots[index]
+    }
+
+    fun officerCaptureAllShots() {
+        for (i in officerShots.indices) officerShots[i] = true
+    }
+
+    fun submitOfficerVetting() {
+        screen = Screen.VoDone
+    }
 }

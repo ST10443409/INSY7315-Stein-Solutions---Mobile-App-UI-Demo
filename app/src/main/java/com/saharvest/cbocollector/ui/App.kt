@@ -11,6 +11,8 @@ import androidx.lifecycle.viewmodel.compose.viewModel
 import com.saharvest.cbocollector.data.BOTTOM_NAV
 import com.saharvest.cbocollector.data.SCREENS_WITH_BOTTOM_NAV
 import com.saharvest.cbocollector.data.Screen
+import com.saharvest.cbocollector.data.VO_BOTTOM_NAV
+import com.saharvest.cbocollector.data.VO_SCREENS_WITH_BOTTOM_NAV
 import com.saharvest.cbocollector.state.AppState
 import com.saharvest.cbocollector.ui.components.BottomNavBar
 import com.saharvest.cbocollector.ui.screens.AddProductSheet
@@ -27,6 +29,13 @@ import com.saharvest.cbocollector.ui.screens.SignScreen
 import com.saharvest.cbocollector.ui.screens.SplashScreen
 import com.saharvest.cbocollector.ui.screens.SyncScreen
 import com.saharvest.cbocollector.ui.screens.VettingScreen
+import com.saharvest.cbocollector.ui.screens.VoDoneScreen
+import com.saharvest.cbocollector.ui.screens.VoFormScreen
+import com.saharvest.cbocollector.ui.screens.VoHomeScreen
+import com.saharvest.cbocollector.ui.screens.VoLoginScreen
+import com.saharvest.cbocollector.ui.screens.VoPhotosScreen
+import com.saharvest.cbocollector.ui.screens.VoReviewScreen
+import com.saharvest.cbocollector.ui.screens.VoSyncScreen
 import com.saharvest.cbocollector.ui.theme.CBOCollectorTheme
 
 private fun backTargetFor(screen: Screen): Screen? = when (screen) {
@@ -43,6 +52,13 @@ private fun backTargetFor(screen: Screen): Screen? = when (screen) {
     Screen.Done -> Screen.Home
     Screen.Home -> null
     Screen.Splash -> null
+    Screen.VoLogin -> Screen.RoleSelection
+    Screen.VoHome -> null
+    Screen.VoForm -> Screen.VoHome
+    Screen.VoReview -> Screen.VoForm
+    Screen.VoPhotos -> Screen.VoForm
+    Screen.VoSync -> Screen.VoHome
+    Screen.VoDone -> Screen.VoHome
 }
 
 @Composable
@@ -70,10 +86,19 @@ fun CBOCollectorApp(state: AppState = viewModel()) {
                         Screen.Sync -> SyncScreen(state)
                         Screen.Done -> DoneScreen(state)
                         Screen.History -> HistoryScreen()
+                        Screen.VoLogin -> VoLoginScreen(state)
+                        Screen.VoHome -> VoHomeScreen(state)
+                        Screen.VoForm -> VoFormScreen(state)
+                        Screen.VoReview -> VoReviewScreen(state)
+                        Screen.VoPhotos -> VoPhotosScreen(state)
+                        Screen.VoSync -> VoSyncScreen(state)
+                        Screen.VoDone -> VoDoneScreen(state)
                     }
                 }
                 if (state.screen in SCREENS_WITH_BOTTOM_NAV) {
                     BottomNavBar(items = BOTTOM_NAV, current = state.screen, onNavigate = { state.go(it) })
+                } else if (state.screen in VO_SCREENS_WITH_BOTTOM_NAV) {
+                    BottomNavBar(items = VO_BOTTOM_NAV, current = state.screen, onNavigate = { state.go(it) })
                 }
             }
 

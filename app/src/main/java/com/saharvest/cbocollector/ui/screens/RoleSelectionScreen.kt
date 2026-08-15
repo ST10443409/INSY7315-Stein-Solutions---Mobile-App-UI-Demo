@@ -82,7 +82,7 @@ fun RoleSelectionScreen(state: AppState) {
                 RoleSquare(
                     modifier = Modifier.weight(1f),
                     title = "Vetting",
-                    onClick = { /* Do nothing for now */ }
+                    onClick = { state.go(Screen.VoLogin) }
                 )
             }
             Row(

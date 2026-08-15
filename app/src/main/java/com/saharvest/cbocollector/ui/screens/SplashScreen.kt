@@ -129,7 +129,7 @@ fun SplashScreen(onContinue: () -> Unit) {
                     )
                 }
                 Text(
-                    text = "CBO collections",
+                    text = "Field operations",
                     fontFamily = Roboto,
                     fontSize = 11.5.sp,
                     color = SaColors.Cream.copy(alpha = 0.34f),

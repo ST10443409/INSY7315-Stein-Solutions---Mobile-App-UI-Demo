@@ -52,7 +52,8 @@ val COLLECTION_HISTORY: List<HistoryEntry> = listOf(
 data class NavItem(val id: Screen, val label: String, val pathData: String)
 
 enum class Screen {
-    Splash, RoleSelection, Login, Home, Cbos, Vetting, Review, Collect, Sign, Photos, Sync, Done, History
+    Splash, RoleSelection, Login, Home, Cbos, Vetting, Review, Collect, Sign, Photos, Sync, Done, History,
+    VoLogin, VoHome, VoForm, VoReview, VoPhotos, VoSync, VoDone,
 }
 
 val BOTTOM_NAV: List<NavItem> = listOf(
@@ -63,6 +64,23 @@ val BOTTOM_NAV: List<NavItem> = listOf(
 )
 
 val SCREENS_WITH_BOTTOM_NAV: Set<Screen> = setOf(Screen.Home, Screen.Collect, Screen.History, Screen.Sync)
+
+/** Bottom nav for the Vetting Officer flow — Visits / Form / Evidence / Sync. */
+val VO_BOTTOM_NAV: List<NavItem> = listOf(
+    NavItem(Screen.VoHome, "Visits", com.saharvest.cbocollector.ui.theme.GlyphPaths.NavHome),
+    NavItem(Screen.VoForm, "Form", com.saharvest.cbocollector.ui.theme.GlyphPaths.NavClipboard),
+    NavItem(Screen.VoPhotos, "Evidence", com.saharvest.cbocollector.ui.theme.GlyphPaths.NavCamera),
+    NavItem(Screen.VoSync, "Sync", com.saharvest.cbocollector.ui.theme.GlyphPaths.NavSync),
+)
+
+val VO_SCREENS_WITH_BOTTOM_NAV: Set<Screen> = setOf(Screen.VoHome, Screen.VoForm, Screen.VoPhotos, Screen.VoSync)
+
+/** Site visits on the vetting officer's schedule — mirrors the design's `tasks` for App 2 of 3. */
+val VO_TODAY_TASKS: List<Task> = listOf(
+    Task("09:00", "Diepsloot Ext 4", "Site visit booked · no form started", "To do", Tone.WARN, Tone.WARN),
+    Task("11:30", "Botshabelo", "Site visit booked · 14 km", "To do", Tone.NEW, Tone.OK),
+    Task("14:00", "Umlazi H", "Site visit booked · re-check hygiene", "To do", Tone.NEW, Tone.NEW),
+)
 
 data class SyncItem(val title: String, val meta: String, val state: String, val tone: Tone)
 
