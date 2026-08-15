@@ -81,8 +81,8 @@ fun SplashScreen(onContinue: () -> Unit) {
                     contentAlignment = Alignment.Center,
                 ) {
                     Image(
-                        painter = painterResource(R.drawable.saharvest_truck),
-                        contentDescription = "SA Harvest collection truck",
+                        painter = painterResource(R.drawable.saharvest_logo),
+                        contentDescription = "SA Harvest logo",
                         contentScale = ContentScale.Fit,
                         modifier = Modifier.widthIn(max = 330.dp).fillMaxWidth(),
                     )

@@ -39,7 +39,7 @@ fun BottomNavBar(
         Row(modifier = Modifier.fillMaxWidth().padding(horizontal = 6.dp, vertical = 8.dp)) {
             items.forEach { item ->
                 val active = item.id == current
-                val labelColor = if (active) SaColors.LinkGold else SaColors.MutedLight
+                val labelColor = if (active) SaColors.Ink else SaColors.MutedLight
                 val pillShape = RoundedCornerShape(999.dp)
                 Column(
                     modifier = Modifier
@@ -52,7 +52,7 @@ fun BottomNavBar(
                     Row(
                         modifier = Modifier
                             .clip(pillShape)
-                            .background(if (active) SaColors.YellowTickBg else Color.Transparent, pillShape)
+                            .background(if (active) SaColors.inkAlpha(0.08f) else Color.Transparent, pillShape)
                             .padding(horizontal = 14.dp, vertical = 4.dp),
                     ) {
                         StrokeIcon(pathData = item.pathData, tint = labelColor, modifier = Modifier.size(21.dp))

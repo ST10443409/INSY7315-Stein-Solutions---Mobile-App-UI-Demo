@@ -139,5 +139,19 @@ fun VoSyncScreen(state: AppState) {
                 color = if (online && !synced) SaColors.Ink else SaColors.Muted,
             )
         }
+
+        com.saharvest.cbocollector.ui.components.OutlinePillButton(
+            onClick = { state.go(com.saharvest.cbocollector.data.Screen.RoleSelection) },
+            modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
+            contentPadding = PaddingValues(15.dp),
+        ) {
+            Text(
+                "Return to role selection",
+                fontFamily = Figtree,
+                fontWeight = FontWeight.SemiBold,
+                fontSize = 14.5.sp,
+                color = SaColors.Ink,
+            )
+        }
     }
 }

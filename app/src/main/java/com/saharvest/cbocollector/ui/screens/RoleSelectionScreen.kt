@@ -70,46 +70,35 @@ fun RoleSelectionScreen(state: AppState) {
             modifier = Modifier.fillMaxWidth(),
             verticalArrangement = Arrangement.spacedBy(16.dp)
         ) {
-            Row(
+            RoleRectangle(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                RoleSquare(
-                    modifier = Modifier.weight(1f),
-                    title = "CBO Collection",
-                    onClick = { state.go(Screen.Login) }
-                )
-                RoleSquare(
-                    modifier = Modifier.weight(1f),
-                    title = "Vetting",
-                    onClick = { state.go(Screen.VoLogin) }
-                )
-            }
-            Row(
+                title = "CBO Collection",
+                onClick = { state.go(Screen.Login) }
+            )
+            RoleRectangle(
                 modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(16.dp)
-            ) {
-                RoleSquare(
-                    modifier = Modifier.weight(1f),
-                    title = "Admin",
-                    onClick = { state.go(Screen.AdminLogin) }
-                )
-                Spacer(modifier = Modifier.weight(1f))
-            }
+                title = "Vetting",
+                onClick = { state.go(Screen.VoLogin) }
+            )
+            RoleRectangle(
+                modifier = Modifier.fillMaxWidth(),
+                title = "Admin",
+                onClick = { state.go(Screen.AdminLogin) }
+            )
         }
     }
 }
 
 @Composable
-fun RoleSquare(modifier: Modifier = Modifier, title: String, onClick: () -> Unit) {
+fun RoleRectangle(modifier: Modifier = Modifier, title: String, onClick: () -> Unit) {
     Box(
         modifier = modifier
-            .aspectRatio(1f)
+            .height(80.dp)
             .clip(RoundedCornerShape(20.dp))
-            .background(SaColors.SurfaceAlt)
+            .background(SaColors.SurfaceAlt.copy(alpha = 0.5f))
             .clickable { onClick() }
             .padding(16.dp),
-        contentAlignment = Alignment.Center
+        contentAlignment = Alignment.CenterStart
     ) {
         Text(
             text = title,
@@ -117,7 +106,7 @@ fun RoleSquare(modifier: Modifier = Modifier, title: String, onClick: () -> Unit
             fontWeight = FontWeight.SemiBold,
             fontSize = 18.sp,
             color = SaColors.Ink,
-            textAlign = TextAlign.Center
+            textAlign = TextAlign.Start
         )
     }
 }
