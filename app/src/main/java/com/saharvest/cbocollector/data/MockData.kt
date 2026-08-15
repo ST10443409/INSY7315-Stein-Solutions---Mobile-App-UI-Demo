@@ -52,7 +52,7 @@ val COLLECTION_HISTORY: List<HistoryEntry> = listOf(
 data class NavItem(val id: Screen, val label: String, val pathData: String)
 
 enum class Screen {
-    Splash, Login, Home, Cbos, Vetting, Review, Collect, Sign, Photos, Sync, Done, History
+    Splash, RoleSelection, Login, Home, Cbos, Vetting, Review, Collect, Sign, Photos, Sync, Done, History
 }
 
 val BOTTOM_NAV: List<NavItem> = listOf(

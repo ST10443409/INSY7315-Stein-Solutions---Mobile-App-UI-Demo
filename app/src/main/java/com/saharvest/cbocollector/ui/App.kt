@@ -4,6 +4,7 @@ import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -21,6 +22,7 @@ import com.saharvest.cbocollector.ui.screens.HomeScreen
 import com.saharvest.cbocollector.ui.screens.LoginScreen
 import com.saharvest.cbocollector.ui.screens.PhotosScreen
 import com.saharvest.cbocollector.ui.screens.ReviewScreen
+import com.saharvest.cbocollector.ui.screens.RoleSelectionScreen
 import com.saharvest.cbocollector.ui.screens.SignScreen
 import com.saharvest.cbocollector.ui.screens.SplashScreen
 import com.saharvest.cbocollector.ui.screens.SyncScreen
@@ -28,7 +30,8 @@ import com.saharvest.cbocollector.ui.screens.VettingScreen
 import com.saharvest.cbocollector.ui.theme.CBOCollectorTheme
 
 private fun backTargetFor(screen: Screen): Screen? = when (screen) {
-    Screen.Login -> Screen.Splash
+    Screen.RoleSelection -> Screen.Splash
+    Screen.Login -> Screen.RoleSelection
     Screen.Cbos -> Screen.Home
     Screen.Vetting -> Screen.Cbos
     Screen.Review -> Screen.Vetting
@@ -50,11 +53,12 @@ fun CBOCollectorApp(state: AppState = viewModel()) {
             state.go(backTarget!!)
         }
 
-        Box(modifier = Modifier.fillMaxSize()) {
+        Box(modifier = Modifier.fillMaxSize().systemBarsPadding()) {
             Column(modifier = Modifier.fillMaxSize()) {
                 Box(modifier = Modifier.weight(1f)) {
                     when (state.screen) {
-                        Screen.Splash -> SplashScreen(onContinue = { state.go(Screen.Login) })
+                        Screen.Splash -> SplashScreen(onContinue = { state.go(Screen.RoleSelection) })
+                        Screen.RoleSelection -> RoleSelectionScreen(state)
                         Screen.Login -> LoginScreen(state)
                         Screen.Home -> HomeScreen(state)
                         Screen.Cbos -> CbosScreen(state)
