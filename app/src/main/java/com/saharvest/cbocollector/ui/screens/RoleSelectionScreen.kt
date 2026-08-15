@@ -92,7 +92,7 @@ fun RoleSelectionScreen(state: AppState) {
                 RoleSquare(
                     modifier = Modifier.weight(1f),
                     title = "Admin",
-                    onClick = { /* Do nothing for now */ }
+                    onClick = { state.go(Screen.AdminLogin) }
                 )
                 Spacer(modifier = Modifier.weight(1f))
             }

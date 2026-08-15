@@ -10,12 +10,15 @@ import com.saharvest.cbocollector.data.CBOS
 import com.saharvest.cbocollector.data.Cbo
 import com.saharvest.cbocollector.data.ProductLine
 import com.saharvest.cbocollector.data.Screen
+import com.saharvest.cbocollector.data.SUBMISSIONS
+import com.saharvest.cbocollector.data.Submission
 import com.saharvest.cbocollector.data.VettingField
 import com.saharvest.cbocollector.data.VettingSection
 import com.saharvest.cbocollector.data.VETTING_SECTIONS
 
 enum class DoneKind { Collect, Vet }
 enum class Signatory { Donor, Cbo }
+enum class AdminDecision { Approve, Return, Decline }
 
 /**
  * Single source of truth for the whole collector flow, mirroring the
@@ -279,5 +282,34 @@ class AppState : ViewModel() {
 
     fun submitOfficerVetting() {
         screen = Screen.VoDone
+    }
+
+    // --- Admin flow ---
+    var adminSelectedIndex by mutableStateOf(0)
+    val adminSelected: Submission get() = SUBMISSIONS.getOrElse(adminSelectedIndex) { SUBMISSIONS[0] }
+    var adminFilter by mutableStateOf("Awaiting")
+    var adminDecision by mutableStateOf<AdminDecision?>(null)
+    var adminReason by mutableStateOf("")
+    var adminQuery by mutableStateOf("")
+    var adminExported by mutableStateOf(false)
+    var adminDoneKind by mutableStateOf(AdminDecision.Approve)
+
+    fun openSubmission(index: Int) {
+        adminSelectedIndex = index
+        adminDecision = null
+        adminReason = ""
+        screen = Screen.AdminDetail
+    }
+
+    fun adminNeedsReason(): Boolean = adminDecision == AdminDecision.Return || adminDecision == AdminDecision.Decline
+
+    fun adminCommit() {
+        val decision = adminDecision ?: return
+        adminDoneKind = decision
+        screen = Screen.AdminDone
+    }
+
+    fun exportFunderPack() {
+        adminExported = true
     }
 }

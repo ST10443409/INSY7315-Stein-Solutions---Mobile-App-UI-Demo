@@ -8,6 +8,8 @@ import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.viewmodel.compose.viewModel
+import com.saharvest.cbocollector.data.ADMIN_BOTTOM_NAV
+import com.saharvest.cbocollector.data.ADMIN_SCREENS_WITH_BOTTOM_NAV
 import com.saharvest.cbocollector.data.BOTTOM_NAV
 import com.saharvest.cbocollector.data.SCREENS_WITH_BOTTOM_NAV
 import com.saharvest.cbocollector.data.Screen
@@ -16,6 +18,14 @@ import com.saharvest.cbocollector.data.VO_SCREENS_WITH_BOTTOM_NAV
 import com.saharvest.cbocollector.state.AppState
 import com.saharvest.cbocollector.ui.components.BottomNavBar
 import com.saharvest.cbocollector.ui.screens.AddProductSheet
+import com.saharvest.cbocollector.ui.screens.AdminApprovalsScreen
+import com.saharvest.cbocollector.ui.screens.AdminDetailScreen
+import com.saharvest.cbocollector.ui.screens.AdminDoneScreen
+import com.saharvest.cbocollector.ui.screens.AdminHomeScreen
+import com.saharvest.cbocollector.ui.screens.AdminLoginScreen
+import com.saharvest.cbocollector.ui.screens.AdminRegisterScreen
+import com.saharvest.cbocollector.ui.screens.AdminReportsScreen
+import com.saharvest.cbocollector.ui.screens.AdminTeamScreen
 import com.saharvest.cbocollector.ui.screens.CbosScreen
 import com.saharvest.cbocollector.ui.screens.CollectScreen
 import com.saharvest.cbocollector.ui.screens.DoneScreen
@@ -59,6 +69,14 @@ private fun backTargetFor(screen: Screen): Screen? = when (screen) {
     Screen.VoPhotos -> Screen.VoForm
     Screen.VoSync -> Screen.VoHome
     Screen.VoDone -> Screen.VoHome
+    Screen.AdminLogin -> Screen.RoleSelection
+    Screen.AdminHome -> null
+    Screen.AdminApprovals -> Screen.AdminHome
+    Screen.AdminDetail -> Screen.AdminApprovals
+    Screen.AdminDone -> Screen.AdminHome
+    Screen.AdminRegister -> Screen.AdminHome
+    Screen.AdminTeam -> Screen.AdminHome
+    Screen.AdminReports -> Screen.AdminHome
 }
 
 @Composable
@@ -93,12 +111,22 @@ fun CBOCollectorApp(state: AppState = viewModel()) {
                         Screen.VoPhotos -> VoPhotosScreen(state)
                         Screen.VoSync -> VoSyncScreen(state)
                         Screen.VoDone -> VoDoneScreen(state)
+                        Screen.AdminLogin -> AdminLoginScreen(state)
+                        Screen.AdminHome -> AdminHomeScreen(state)
+                        Screen.AdminApprovals -> AdminApprovalsScreen(state)
+                        Screen.AdminDetail -> AdminDetailScreen(state)
+                        Screen.AdminDone -> AdminDoneScreen(state)
+                        Screen.AdminRegister -> AdminRegisterScreen(state)
+                        Screen.AdminTeam -> AdminTeamScreen()
+                        Screen.AdminReports -> AdminReportsScreen(state)
                     }
                 }
                 if (state.screen in SCREENS_WITH_BOTTOM_NAV) {
                     BottomNavBar(items = BOTTOM_NAV, current = state.screen, onNavigate = { state.go(it) })
                 } else if (state.screen in VO_SCREENS_WITH_BOTTOM_NAV) {
                     BottomNavBar(items = VO_BOTTOM_NAV, current = state.screen, onNavigate = { state.go(it) })
+                } else if (state.screen in ADMIN_SCREENS_WITH_BOTTOM_NAV) {
+                    BottomNavBar(items = ADMIN_BOTTOM_NAV, current = state.screen, onNavigate = { state.go(it) })
                 }
             }
 

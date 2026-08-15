@@ -54,6 +54,7 @@ data class NavItem(val id: Screen, val label: String, val pathData: String)
 enum class Screen {
     Splash, RoleSelection, Login, Home, Cbos, Vetting, Review, Collect, Sign, Photos, Sync, Done, History,
     VoLogin, VoHome, VoForm, VoReview, VoPhotos, VoSync, VoDone,
+    AdminLogin, AdminHome, AdminApprovals, AdminDetail, AdminDone, AdminRegister, AdminTeam, AdminReports,
 }
 
 val BOTTOM_NAV: List<NavItem> = listOf(

@@ -32,6 +32,10 @@ object GlyphPaths {
     const val NavSync = "M20.5 12a8.5 8.5 0 1 1-2.6-6.1M20 3.5v5h-5"
     const val NavClipboard = "M8 4h8a2 2 0 0 1 2 2v14H6V6a2 2 0 0 1 2-2zM9.5 11.5l1.8 1.8 3.7-3.8"
     const val NavCamera = "M4 8h3l1.5-2h7L17 8h3v11H4zM12 16.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7"
+    const val NavApprove = "M9 11.5l2.5 2.5L19 6.5M5 19h9"
+    const val NavPeople = "M2.5 20c1.5-3.6 11-3.6 12.5 0M8.75 5.5a3.25 3.25 0 1 1 0 6.5 3.25 3.25 0 0 1 0-6.5M17 12c2 .4 4 1.6 4.5 3.5"
+    const val NavBars = "M4 20V10M10 20V4M16 20v-7M22 20H2"
+    const val AlertStem = "M12 8v5M12 16.5v.5"
 }
 
 /** Draws one or more SVG-style stroke paths, scaled uniformly from a 24x24 viewBox. */
@@ -75,6 +79,32 @@ fun SearchGlyph(
             )
             drawPath(
                 path = tail,
+                color = tint,
+                style = Stroke(width = strokeWidth, cap = StrokeCap.Round, join = StrokeJoin.Round),
+            )
+        }
+    }
+}
+
+/** The "needs attention" glyph: a circle outline with an exclamation stem + dot inside. */
+@Composable
+fun AlertCircleGlyph(
+    modifier: Modifier = Modifier,
+    tint: Color = LocalContentColor.current,
+    strokeWidth: Float = 2.75f,
+) {
+    val stem = remember { PathParser().parsePathString(GlyphPaths.AlertStem).toPath() }
+    Canvas(modifier = modifier) {
+        val factor = size.minDimension / 24f
+        scale(factor, factor, pivot = Offset.Zero) {
+            drawCircle(
+                color = tint,
+                radius = 9f,
+                center = Offset(12f, 12f),
+                style = Stroke(width = strokeWidth),
+            )
+            drawPath(
+                path = stem,
                 color = tint,
                 style = Stroke(width = strokeWidth, cap = StrokeCap.Round, join = StrokeJoin.Round),
             )
