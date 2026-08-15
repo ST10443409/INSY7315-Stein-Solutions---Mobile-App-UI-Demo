@@ -16,10 +16,10 @@ This mobile application provides an end-to-end digital workflow for **SA Harvest
 
 ### Key Roles & Capabilities:
 - **🚚 CBO Collector (Food Rescue Operations)**:
-  - Browse assigned Community-Based Organisations (CBOs).
-  - Log food collections with category breakdowns, weight (kg), and expiry dates.
-  - Capture digital recipient signatures and photographic proof of collection.
-  - Offline collection logging with batch cloud synchronisation.
+  - Log food collections with category breakdowns, weight (kg), and notes.
+  - Capture digital recipient and donor signatures with timestamping.
+  - Capture photographic proof of collection and delivery notes.
+  - Offline collection logging with background and batch cloud synchronisation.
 - **📋 Vetting Officer (VO — Compliance & Audit)**:
   - Perform structured multi-stage CBO on-site inspections (Storage, Food Safety, Logistics, Governance).
   - Score compliance criteria and capture mandatory visual evidence.

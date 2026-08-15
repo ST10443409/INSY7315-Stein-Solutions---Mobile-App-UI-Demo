@@ -26,19 +26,16 @@ import com.saharvest.cbocollector.ui.screens.AdminLoginScreen
 import com.saharvest.cbocollector.ui.screens.AdminRegisterScreen
 import com.saharvest.cbocollector.ui.screens.AdminReportsScreen
 import com.saharvest.cbocollector.ui.screens.AdminTeamScreen
-import com.saharvest.cbocollector.ui.screens.CbosScreen
 import com.saharvest.cbocollector.ui.screens.CollectScreen
 import com.saharvest.cbocollector.ui.screens.DoneScreen
 import com.saharvest.cbocollector.ui.screens.HistoryScreen
 import com.saharvest.cbocollector.ui.screens.HomeScreen
 import com.saharvest.cbocollector.ui.screens.LoginScreen
 import com.saharvest.cbocollector.ui.screens.PhotosScreen
-import com.saharvest.cbocollector.ui.screens.ReviewScreen
 import com.saharvest.cbocollector.ui.screens.RoleSelectionScreen
 import com.saharvest.cbocollector.ui.screens.SignScreen
 import com.saharvest.cbocollector.ui.screens.SplashScreen
 import com.saharvest.cbocollector.ui.screens.SyncScreen
-import com.saharvest.cbocollector.ui.screens.VettingScreen
 import com.saharvest.cbocollector.ui.screens.VoDoneScreen
 import com.saharvest.cbocollector.ui.screens.VoFormScreen
 import com.saharvest.cbocollector.ui.screens.VoHomeScreen
@@ -51,9 +48,6 @@ import com.saharvest.cbocollector.ui.theme.CBOCollectorTheme
 private fun backTargetFor(screen: Screen): Screen? = when (screen) {
     Screen.RoleSelection -> Screen.Splash
     Screen.Login -> Screen.RoleSelection
-    Screen.Cbos -> Screen.Home
-    Screen.Vetting -> Screen.Cbos
-    Screen.Review -> Screen.Vetting
     Screen.Collect -> Screen.Home
     Screen.Sign -> Screen.Collect
     Screen.Photos -> Screen.Collect
@@ -95,9 +89,6 @@ fun CBOCollectorApp(state: AppState = viewModel()) {
                         Screen.RoleSelection -> RoleSelectionScreen(state)
                         Screen.Login -> LoginScreen(state)
                         Screen.Home -> HomeScreen(state)
-                        Screen.Cbos -> CbosScreen(state)
-                        Screen.Vetting -> VettingScreen(state)
-                        Screen.Review -> ReviewScreen(state)
                         Screen.Collect -> CollectScreen(state)
                         Screen.Sign -> SignScreen(state)
                         Screen.Photos -> PhotosScreen(state)

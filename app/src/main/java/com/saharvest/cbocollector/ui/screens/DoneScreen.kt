@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.saharvest.cbocollector.data.Screen
 import com.saharvest.cbocollector.state.AppState
-import com.saharvest.cbocollector.state.DoneKind
 import com.saharvest.cbocollector.ui.components.FilledPillButton
 import com.saharvest.cbocollector.ui.components.OutlinePillButton
 import com.saharvest.cbocollector.ui.theme.Figtree
@@ -43,31 +42,21 @@ private data class ReceiptRow(val key: String, val value: String)
 fun DoneScreen(state: AppState) {
     val online = rememberIsOnline()
     val cbo = state.selectedCbo
-    val isVet = state.doneKind == DoneKind.Vet
 
-    val title = if (isVet) "Vetting captured" else "Collection recorded"
+    val title = "Collection recorded"
     val blurb = if (online) {
         "Sent to the depot. You will get a confirmation once it is reviewed."
     } else {
         "Saved on the device and queued. It uploads by itself as soon as you have signal."
     }
-    val receipt = if (isVet) {
-        listOf(
-            ReceiptRow("Organisation", cbo.name),
-            ReceiptRow("Sections complete", "${state.requiredDone()}/${state.requiredTotal()}"),
-            ReceiptRow("Photos", "6"),
-            ReceiptRow("Reference", "VET-2026-0841"),
-        )
-    } else {
-        listOf(
-            ReceiptRow("Donor site", DONOR_SITE_NAME),
-            ReceiptRow("Collected for", cbo.name),
-            ReceiptRow("Total weight", String.format(Locale.US, "%.1f kg", state.totalKg())),
-            ReceiptRow("Arrival · departure", "${state.arrivalTime} · ${state.departureTime ?: "10:26"}"),
-            ReceiptRow("Signatures", "2 of 2"),
-            ReceiptRow("Reference", "COL-2026-1174"),
-        )
-    }
+    val receipt = listOf(
+        ReceiptRow("Donor site", DONOR_SITE_NAME),
+        ReceiptRow("Collected for", cbo.name),
+        ReceiptRow("Total weight", String.format(Locale.US, "%.1f kg", state.totalKg())),
+        ReceiptRow("Arrival · departure", "${state.arrivalTime} · ${state.departureTime ?: "10:26"}"),
+        ReceiptRow("Signatures", "2 of 2"),
+        ReceiptRow("Reference", "COL-2026-1174"),
+    )
 
     Column(
         modifier = Modifier

@@ -163,31 +163,6 @@ fun HomeScreen(state: AppState) {
                     )
                 }
             }
-            CardButton(
-                onClick = { state.go(Screen.Cbos) },
-                modifier = Modifier.fillMaxWidth(),
-                shape = RoundedCornerShape(16.dp),
-                borderColor = SaColors.inkAlpha(0.14f),
-                contentPadding = PaddingValues(20.dp),
-            ) {
-                Column(modifier = Modifier.weight(1f)) {
-                    Row(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text("Organisations", fontFamily = Poppins, fontWeight = FontWeight.SemiBold, fontSize = 20.sp, color = SaColors.Ink)
-                        StrokeIcon(pathData = GlyphPaths.ArrowRight, tint = SaColors.Ink, modifier = Modifier.size(22.dp))
-                    }
-                    Text(
-                        "Vet and manage CBOs in your area",
-                        fontFamily = Figtree,
-                        fontSize = 13.sp,
-                        color = SaColors.Muted,
-                        modifier = Modifier.padding(top = 6.dp),
-                    )
-                }
-            }
         }
 
         EyebrowLabel(

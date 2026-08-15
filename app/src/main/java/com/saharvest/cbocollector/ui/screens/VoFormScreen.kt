@@ -31,6 +31,7 @@ import com.saharvest.cbocollector.data.VETTING_SECTIONS
 import com.saharvest.cbocollector.state.AppState
 import com.saharvest.cbocollector.ui.components.FilledPillButton
 import com.saharvest.cbocollector.ui.components.ScreenHeader
+import com.saharvest.cbocollector.ui.components.VettingFieldRow
 import com.saharvest.cbocollector.ui.theme.Figtree
 import com.saharvest.cbocollector.ui.theme.SaColors
 
