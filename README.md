@@ -29,22 +29,7 @@ This mobile application provides an end-to-end digital workflow for **SA Harvest
   - View real-time field team activities and collection reports.
   - Register new beneficiaries and manage team roles.
 
----
 
-## 💻 Tech Stack & Specifications
-
-| Component | Specification / Version |
-| :--- | :--- |
-| **Primary Language** | **Kotlin** (`2.2.0`) |
-| **UI Toolkit** | **Jetpack Compose** with **Material Design 3** (BOM `2025.06.00`) |
-| **Architecture** | Modern Android Architecture (State Hoisting, ViewModels, Unidirectional Data Flow) |
-| **Compile SDK** | `35` (Android 15 / Vanilla Ice Cream) |
-| **Target SDK** | `35` (Android 15) |
-| **Minimum SDK** | `26` (Android 8.0 Oreo) |
-| **Build System** | Gradle (`8.9`) with Android Gradle Plugin (`8.7.3`) & Gradle Kotlin DSL (`build.gradle.kts`) |
-| **Java Compatibility** | **Java 17 (JVM 17)** |
-
----
 
 ## 🚀 How to Run the Project Locally in Android Studio
 
@@ -154,74 +139,15 @@ Ensure Android Studio is using **JDK 17** and **Android SDK 35**:
 3. Android Studio will compile the Kotlin Compose code, install the APK, and launch the application on the selected device.
 
 ---
+### Step 7: How to navigate between roles 
 
-## 🛠️ Command-Line Build & Run (Alternative)
-
-If you prefer building and installing via terminal/command line:
-
-### Build Debug APK:
-```bash
-# Windows (PowerShell / Command Prompt)
-.\gradlew.bat assembleDebug
-
-# macOS / Linux
-./gradlew assembleDebug
-```
-
-### Install Directly to Connected Device/Emulator:
-```bash
-# Windows (PowerShell / Command Prompt)
-.\gradlew.bat installDebug
-
-# macOS / Linux
-./gradlew installDebug
-```
-
-### Run Unit Tests & Lint Checks:
-```bash
-# Windows
-.\gradlew.bat test lint
-
-# macOS / Linux
-./gradlew test lint
-```
-
-The compiled APK will be located at:
-```
-app/build/outputs/apk/debug/app-debug.apk
-```
-
+1. On the launch of the app, there will be a landing page followed by a role selection page, each selection shows the prototypes and workflows for each role
+2. How to get back to this page after going to a role workflow ? A: On the CBO Collection & Vetting Role navigate to the sync tab on the bottom nabber and press the 'return to role selection' button, on the Admin workflow navigate to the reports tab on the bottom navbar and press the 'return to role selection' button
 ---
 
-## 📂 Project Structure
 
-```text
-INSY7315-Stein-Solutions---Mobile-App-UI-Demo/
-├── app/
-│   ├── build.gradle.kts          # Module-level build & Compose dependencies
-│   └── src/
-│       └── main/
-│           ├── AndroidManifest.xml
-│           ├── java/com/saharvest/cbocollector/
-│           │   ├── MainActivity.kt        # Main single-activity entry point
-│           │   ├── data/                  # Mock data, schemas, role definitions
-│           │   ├── state/                 # Application state holders & ViewModels
-│           │   ├── ui/
-│           │   │   ├── App.kt             # Main navigation router & scaffold
-│           │   │   ├── components/        # Reusable UI widgets & navigation bars
-│           │   │   ├── screens/           # Screens for Collector, VO, and Admin
-│           │   │   └── theme/             # Material 3 Color scheme & Typography
-│           │   └── util/                  # Helper utilities (date, sync, formatting)
-│           └── res/                       # Drawables, mipmaps, string resources
-├── gradle/
-│   ├── libs.versions.toml        # Centralised Gradle Version Catalog
-│   └── wrapper/                  # Gradle wrapper binaries & properties
-├── build.gradle.kts              # Top-level build configuration
-├── settings.gradle.kts           # Gradle plugin & module repository settings
-└── README.md                     # Project documentation
-```
 
----
+
 
 ## ❓ Troubleshooting & Common Issues
 
